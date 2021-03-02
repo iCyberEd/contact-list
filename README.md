@@ -1,7 +1,11 @@
-# How to get started
+# This is a recruiting assignment
 
-In the command line:
-1.git clone https://gitlab.com/iCyber/contact-list.git
-2.open the folder where you cloned the repository in IDE (for example Visual Studio Code)
-3.In the command line IDE write: npm install
-4.Then press Enter, and after installation write: npm start
+# I had to implement:
+
+# 1. Run request to receive a JSON object with an array of contacts
+
+# 2. The list of contacts should be sorted alphabetically by last_name
+
+# 3. When a user clicks on a contact (list item) the checkbox should toggle on/off and i should console.log IDs of all selected contacts
+
+# 4. Add search at the top of the list that allows to filter the contacts by first_name and last_name. Searching should not cause contacts to become unchecked.
