@@ -1,13 +1,100 @@
 body {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.contacts__header {
+  background-color: #60afc0;
+  padding: 15px;
+  color: white;
+}
+
+.contacts__search {
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-top: 1px solid rgba(135, 135, 135, 0.3);
+  border-bottom: 1px solid rgba(135, 135, 135, 0.3);
+}
+
+.contacts__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contacts__search__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  /* border: 0; */
+  /* background-color: transparent; */
+}
+
+.contacts__search__icon {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  height: 25px;
+}
+
+.contacts__search__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding-left: 40px;
+}
+
+.contacts__user {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 2px solid rgba(135, 135, 135, 0.3);
+}
+
+.contacts__user--active {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 2px solid rgba(135, 135, 135, 0.3);
+  background-color: rgba(135, 135, 135, 0.3);
+}
+
+.contacts__user__info {
+  margin-left: 5px;
+}
+
+.contacts__user__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 50px 0 0;
+  box-sizing: border-box;
+  border-radius: 50%;
+  min-width: 50px;
+  min-height: 50px;
+  border: 1px solid gray;
+}
+
+.contacts__user__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.contacts__user__name {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.contacts__user__email {
+  font-size: .8em;
 }
