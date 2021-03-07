@@ -1,43 +1,65 @@
+:root {
+  --grey-color: rgba(135, 135, 135, 0.3);
+}
+
 body {
   padding: 0;
   margin: 0;
 }
 
 .contacts__header {
-  background-color: #60afc0;
+  background: rgb(96,175,192);
+  background: linear-gradient(90deg, rgba(96,175,192,1) 0%, rgba(33,165,142,1) 100%);
   padding: 15px;
   color: white;
+  text-align: center;
 }
 
 .contacts__search {
   display: flex;
   position: relative;
   align-items: center;
-  border-top: 1px solid rgba(135, 135, 135, 0.3);
-  border-bottom: 1px solid rgba(135, 135, 135, 0.3);
+  border-top: 1px solid var(--grey-color);
+  border-bottom: 1px solid var(--grey-color);
 }
 
 .contacts__list {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  background-color: #eeeeee;
 }
 
 .contacts__search__button {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  left: 0;
-  width: 30px;
+  flex: 0 0 30px;
   height: 30px;
-  margin-left: 5px;
-  /* border: 0; */
-  /* background-color: transparent; */
+  margin-left: 10px;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid white;
+}
+
+.contacts__search__button:active {
+  border: 2px inset var(--grey-color);
+}
+
+.contacts__search__button .contacts__search__icon--dark {
+  display: none;
+}
+
+.contacts__search__button:hover .contacts__search__icon--light {
+  display: none;
+}
+
+.contacts__search__button:hover .contacts__search__icon--dark {
+  display: block;
 }
 
 .contacts__search__icon {
-  position: absolute;
   left: 0;
   width: 25px;
   height: 25px;
@@ -47,22 +69,32 @@ body {
   box-sizing: border-box;
   width: 100%;
   height: 40px;
-  padding-left: 40px;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+}
+
+.contacts__search__input:hover {
+  background-color: #eeeeee;
 }
 
 .contacts__user {
   display: flex;
   align-items: center;
   padding: 5px;
-  border-bottom: 2px solid rgba(135, 135, 135, 0.3);
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.contacts__user:hover {
+  background-color: var(--grey-color);
 }
 
 .contacts__user--active {
   display: flex;
   align-items: center;
   padding: 5px;
-  border-bottom: 2px solid rgba(135, 135, 135, 0.3);
-  background-color: rgba(135, 135, 135, 0.3);
+  border-bottom: 1px solid var(--grey-color);
+  background-color: var(--grey-color);
 }
 
 .contacts__user__info {
@@ -78,7 +110,9 @@ body {
   border-radius: 50%;
   min-width: 50px;
   min-height: 50px;
-  border: 1px solid gray;
+  border: 1px solid var(--grey-color);
+  color: var(--grey-color);
+  background-color: white;
 }
 
 .contacts__user__icon {
@@ -88,6 +122,7 @@ body {
   border-radius: 50%;
   min-width: 50px;
   min-height: 50px;
+
 }
 
 .contacts__user__name {

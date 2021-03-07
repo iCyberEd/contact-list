@@ -1,5 +1,4 @@
-import React from 'react'
-import './App.css';
+import React from 'react';
 import User from './User';
 import Search from './Search';
 
@@ -17,77 +16,72 @@ class App extends React.Component {
 
   componentDidMount() {
   let self = this
-  let usersRequest = new XMLHttpRequest()
-  usersRequest.onreadystatechange = function() {
-    let usersResponse = usersRequest.response
-    if (this.readyState === 4 && this.status === 200) {
-      usersResponse.sort(function(userA, userB){
+  fetch('https://next.json-generator.com/api/json/get/N1l0Vp6Gq')
+  .then(response => response.json())
+  .then(data => {
+      data.sort(function(userA, userB){
         if(userA.last_name < userB.last_name) { return -1; }
         if(userA.last_name > userB.last_name) { return 1; }
         return 0;
     })
-      self.setState({users: usersResponse, filtered: usersResponse})
-   }
+      self.setState({users: data, filtered: data})
+  })
   }
-  usersRequest.open("GET", "https://teacode-recruitment-challenge.s3.eu-central-1.amazonaws.com/users.json")
-  usersRequest.responseType = 'json'
-  usersRequest.send()
-  }
-
-  
 
   render() {
+
+    let setId = (command, thisId) => {
+      if (command === "set"){
+        let arrCopy = this.state.ids.slice(0)
+        arrCopy.push(thisId)
+        this.setState({
+          users: this.state.users,
+          filtered: this.state.users,
+          ids: [...arrCopy]
+        })
+        console.log([...arrCopy])
+      } else {
+        let removeIndex = this.state.ids.indexOf(thisId)
+        let arrCopy = this.state.ids.slice(0)
+        arrCopy.splice(removeIndex, 1)
+        this.setState({
+          users: this.state.users,
+          filtered: this.state.users,
+          ids: [...arrCopy]
+        })
+      }
+    }
+
+    let usersList = this.state.filtered.map( (user, index) => {
+      return (<User key={index} 
+                    user={user} 
+                    ids={this.state.ids}
+                    setId={setId} />)
+    })
+
+    let searchQuery = (query) => {
+      if (!query){
+        this.setState({
+          users: this.state.users,
+          filtered: this.state.users,
+          ids: this.state.ids
+        })
+      }
+      this.setState({
+        users: this.state.users,
+        filtered: this.state.users.filter( user => {
+          return user.first_name.includes(query) || user.last_name.includes(query)
+        }),
+        ids: this.state.ids
+      })
+    }
+
     return (
       <div className="contacts">
         <header className="contacts__header">Contacts</header>
-        <Search searchQuery={
-          (query) => {
-            if (!query){
-              this.setState({
-                users: this.state.users,
-                filtered: this.state.users,
-                ids: this.state.ids
-              })
-            }
-            this.setState({
-              users: this.state.users,
-              filtered: this.state.users.filter( user => {
-                return user.first_name.includes(query) || user.last_name.includes(query)
-              }),
-              ids: this.state.ids
-            })
-          }
-        } 
-        />
+        <Search searchQuery={searchQuery} />
         <ul className="contacts__list">
-          {this.state.filtered.map( (user, index) => {
-            return (<User key={index} 
-                          user={user} 
-                          ids={this.state.ids}
-                          setId={
-                            (command, thisId) => {
-                              if (command === "set"){
-                                let arrCopy = this.state.ids.slice(0)
-                                arrCopy.push(thisId)
-                                this.setState({
-                                  users: this.state.users,
-                                  filtered: this.state.users,
-                                  ids: [...arrCopy]
-                                })
-                                console.log([...arrCopy])
-                              } else {
-                                let removeIndex = this.state.ids.indexOf(thisId)
-                                let arrCopy = this.state.ids.slice(0)
-                                arrCopy.splice(removeIndex, 1)
-                                this.setState({
-                                  users: this.state.users,
-                                  filtered: this.state.users,
-                                  ids: [...arrCopy]
-                                })
-                              }
-                            }
-                          } />)
-          })}
+          {usersList}
         </ul>
         
       </div>
