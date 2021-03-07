@@ -10,9 +10,7 @@ class App extends React.Component {
       filtered: [],
       ids: []
     }
-
   }
-
 
   componentDidMount() {
   let self = this
